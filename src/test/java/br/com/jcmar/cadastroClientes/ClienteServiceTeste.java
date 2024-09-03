@@ -57,9 +57,18 @@ void setUp() {
 
 
     @Test
-    void EditarClienteTeste() {
-
+    void editarClienteTeste() {
+        clienteInicial.setNome("Maria Aparecida");
+        ClienteModel clienteAtualizado = clienteService.atualizarCliente(clienteInicial.getId(), clienteInicial);
+        assertThat(clienteAtualizado.getNome()).isEqualTo("Maria Aparecida");
     }
 
+
+    @Test
+    void deletarClienteTeste() {
+        clienteService.removerCliente(clienteInicial.getId());
+        Optional <ClienteModel> clienteRemovido = clienteService.obterClientePorId(clienteInicial.getId());
+        assertThat(clienteRemovido).isEmpty();
+    }
 
 }
