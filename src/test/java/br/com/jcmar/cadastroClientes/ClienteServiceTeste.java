@@ -1,5 +1,6 @@
 package br.com.jcmar.cadastroClientes;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+@Transactional
 public class ClienteServiceTeste {
 
     @Autowired
@@ -19,13 +21,13 @@ public class ClienteServiceTeste {
     private ClienteModel clienteInicial;
 
 
-@BeforeEach
-void setUp() {
-
- clienteInicial = new ClienteModel("Maria", "Silva", "mariaSilva@gmail.com", 22,
-        "A.V Mascarenhas de Morais", "São Vicente", "SP");
-        clienteService.criarCliente(clienteInicial);
-}
+//    @BeforeEach
+//    void setUp() {
+//
+//     clienteInicial = new ClienteModel("Maria", "Silva", "mariaSilva@gmail.com", 22,
+//            "A.V Mascarenhas de Morais", "São Vicente", "SP");
+//            clienteService.criarCliente(clienteInicial);
+//    }
 
     @Test
     void criarClienteTeste() {
@@ -66,6 +68,8 @@ void setUp() {
 
     @Test
     void deletarClienteTeste() {
+
+
         clienteService.removerCliente(clienteInicial.getId());
         Optional <ClienteModel> clienteRemovido = clienteService.obterClientePorId(clienteInicial.getId());
         assertThat(clienteRemovido).isEmpty();
