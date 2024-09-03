@@ -20,6 +20,16 @@ public class ClienteModel {
     private String cidade;
     private String estado;
 
+    public ClienteModel() {
+        this.nome = "";
+        this.sobreNome = "";
+        this.email = "";
+        this.idade = 0;
+        this.endereco = "";
+        this.cidade = "";
+        this.estado = "";
+    }
+
     public ClienteModel(String nome, String sobreNome, String email, int idade, String endereco, String cidade, String estado) {
         this.nome = nome;
         this.sobreNome = sobreNome;

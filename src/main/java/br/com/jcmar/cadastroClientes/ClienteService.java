@@ -16,11 +16,11 @@ public class ClienteService implements IClienteService {
     public ClienteModel criarCliente(ClienteModel clienteModel) {
         return clienteRepository.save(clienteModel);
     }
-//
-//    @Override
-//    public Optional<ClienteModel> obterClientePorId(Long id) {
-//        return clienteRepository.findById(id);
-//    }
+
+    @Override
+    public Optional<ClienteModel> obterClientePorId(Long id) {
+        return clienteRepository.findById(id);
+    }
 //
 //    @Override
 //    public ClienteModel atualizarCliente(Long id, ClienteModel clienteModel) {
