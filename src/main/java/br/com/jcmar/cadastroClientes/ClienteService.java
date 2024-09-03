@@ -3,6 +3,7 @@ package br.com.jcmar.cadastroClientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +35,10 @@ public class ClienteService implements IClienteService {
     @Override
     public void removerCliente(long id) {
         clienteRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ClienteModel> listarCliente() {
+        return clienteRepository.findAll();
     }
 }
