@@ -1,5 +1,6 @@
-package br.com.jcmar.cadastroClientes;
+package br.com.jcmar.cadastroClientes.Service;
 
+import br.com.jcmar.cadastroClientes.Model.ClienteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,34 +12,34 @@ public class ClienteService implements IClienteService {
 
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private br.com.jcmar.cadastroClientes.Repository.IClienteRepository IClienteRepository;
 
     @Override
     public ClienteModel criarCliente(ClienteModel clienteModel) {
-        return clienteRepository.save(clienteModel);
+        return IClienteRepository.save(clienteModel);
     }
 
     @Override
     public Optional<ClienteModel> obterClientePorId(Long id) {
-        return clienteRepository.findById(id);
+        return IClienteRepository.findById(id);
     }
 
     @Override
     public ClienteModel atualizarCliente(Long id, ClienteModel clienteModel) {
-        if (clienteRepository.existsById(id)) {
+        if (IClienteRepository.existsById(id)) {
             clienteModel.setId(id);
-            return clienteRepository.save(clienteModel);
+            return IClienteRepository.save(clienteModel);
         }
         return null;
     }
 
     @Override
     public void removerCliente(long id) {
-        clienteRepository.deleteById(id);
+        IClienteRepository.deleteById(id);
     }
 
     @Override
     public List<ClienteModel> listarCliente() {
-        return clienteRepository.findAll();
+        return IClienteRepository.findAll();
     }
 }

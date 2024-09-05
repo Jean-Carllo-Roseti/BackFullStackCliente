@@ -1,5 +1,7 @@
 package br.com.jcmar.cadastroClientes;
 
+import br.com.jcmar.cadastroClientes.Model.ClienteModel;
+import br.com.jcmar.cadastroClientes.Service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ClienteServiceMockTeste {
 
     @Mock
-    private ClienteRepository clienteRepository;
+    private br.com.jcmar.cadastroClientes.Repository.IClienteRepository IClienteRepository;
 
     @InjectMocks
     private ClienteService clienteService;
@@ -30,17 +32,17 @@ public class ClienteServiceMockTeste {
         clienteInicial.setId(1L);  // Defina um ID fictício para o cliente inicial
 
         // Configurando o mock para o método `save`
-        when(clienteRepository.save(any(ClienteModel.class))).thenAnswer(invocation -> {
+        when(IClienteRepository.save(any(ClienteModel.class))).thenAnswer(invocation -> {
             ClienteModel cliente = invocation.getArgument(0);
             cliente.setId(1L);  // Defina um ID fictício quando o cliente for salvo
             return cliente;
         });
 
         // Configurando o mock para o método `findById`
-        when(clienteRepository.findById(clienteInicial.getId())).thenReturn(Optional.of(clienteInicial));
+        when(IClienteRepository.findById(clienteInicial.getId())).thenReturn(Optional.of(clienteInicial));
 
         // Configurando o mock para o método `existsById`
-        when(clienteRepository.existsById(clienteInicial.getId())).thenReturn(true);
+        when(IClienteRepository.existsById(clienteInicial.getId())).thenReturn(true);
     }
 
 
@@ -53,7 +55,7 @@ public class ClienteServiceMockTeste {
         assertThat(criadoCliente).isNotNull();
         assertThat(criadoCliente.getId()).isGreaterThan(0);
 
-        verify(clienteRepository, times(1)).save(novoCliente);
+        verify(IClienteRepository, times(1)).save(novoCliente);
     }
 
     @Test
@@ -68,18 +70,18 @@ public class ClienteServiceMockTeste {
     @Test
     void editarClienteTeste() {
         clienteInicial.setNome("Maria Aparecida");
-        when(clienteRepository.save(clienteInicial)).thenReturn(clienteInicial);
+        when(IClienteRepository.save(clienteInicial)).thenReturn(clienteInicial);
 
         ClienteModel clienteAtualizado = clienteService.atualizarCliente(clienteInicial.getId(), clienteInicial);
 
         assertThat(clienteAtualizado.getNome()).isEqualTo("Maria Aparecida");
-        verify(clienteRepository, times(1)).save(clienteInicial);
+        verify(IClienteRepository, times(1)).save(clienteInicial);
     }
 
     @Test
     void deletarClienteTeste() {
         clienteService.removerCliente(clienteInicial.getId());
 
-        verify(clienteRepository, times(1)).deleteById(clienteInicial.getId());
+        verify(IClienteRepository, times(1)).deleteById(clienteInicial.getId());
     }
 }

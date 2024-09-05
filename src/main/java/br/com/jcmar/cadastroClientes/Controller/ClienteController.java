@@ -1,5 +1,7 @@
-package br.com.jcmar.cadastroClientes;
+package br.com.jcmar.cadastroClientes.Controller;
 
+import br.com.jcmar.cadastroClientes.Model.ClienteModel;
+import br.com.jcmar.cadastroClientes.Service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

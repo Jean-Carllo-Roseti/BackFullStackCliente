@@ -1,4 +1,6 @@
-package br.com.jcmar.cadastroClientes;
+package br.com.jcmar.cadastroClientes.Service;
+
+import br.com.jcmar.cadastroClientes.Model.ClienteModel;
 
 import java.util.List;
 import java.util.Optional;

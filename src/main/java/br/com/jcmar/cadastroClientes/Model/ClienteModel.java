@@ -1,4 +1,4 @@
-package br.com.jcmar.cadastroClientes;
+package br.com.jcmar.cadastroClientes.Model;
 
 
 import jakarta.persistence.Entity;
