@@ -21,8 +21,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Desative CSRF se necessário
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/**").authenticated() // Ajuste conforme necessário
-                                .anyRequest().permitAll() // Permita acesso a outras URLs
+                                .anyRequest().permitAll() // Permite acesso a todas as URLs sem autenticação
                 )
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
@@ -43,3 +42,38 @@ public class SecurityConfig {
         return source;
     }
 }
+
+
+
+//@Configuration
+//@EnableWebSecurity
+//public class SecurityConfig {
+//
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf -> csrf.disable()) // Desative CSRF se necessário
+//                .authorizeHttpRequests(authorizeRequests ->
+//                        authorizeRequests
+//                                .requestMatchers("/api/**").authenticated() // Ajuste conforme necessário
+//                                .anyRequest().permitAll() // Permita acesso a outras URLs
+//                )
+//                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
+//
+//        return http.build();
+//    }
+//
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration cors = new CorsConfiguration();
+//        cors.setAllowCredentials(true);
+//        cors.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://n-front-full-stack-cliente.vercel.app/")); // Permite origem específica
+//        cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permite métodos específicos
+//        cors.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Permite cabeçalhos específicos
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", cors);
+//
+//        return source;
+//    }
+//}
