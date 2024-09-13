@@ -33,7 +33,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
         cors.setAllowCredentials(true);
-        cors.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Permite origem específica
+        cors.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://n-front-full-stack-cliente.vercel.app/")); // Permite origem específica
         cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permite métodos específicos
         cors.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Permite cabeçalhos específicos
 
